@@ -152,5 +152,115 @@ public class Hotel {
                 break;
         }
     }
+    static void availability(int i)
+    {
+        int j,count=0;
+        switch (i) {
+            case 1:
+                for(j=0;j<10;j++)
+                {
+                    if(roomStandard.luxury_doubleroom[j]==null)
+                        count++;
+                }
+                break;
+            case 2:
+                for(j=0;j<roomStandard.deluxe_doubleroom.length;j++)
+                {
+                    if(roomStandard.deluxe_doubleroom[j]==null)
+                        count++;
+                }
+                break;
+            case 3:
+                for(j=0;j<roomStandard.luxury_singleroom.length;j++)
+                {
+                    if(roomStandard.luxury_singleroom[j]==null)
+                        count++;
+                }
+                break;
+            case 4:
+                for(j=0;j<roomStandard.deluxe_singleroom.length;j++)
+                {
+                    if(roomStandard.deluxe_singleroom[j]==null)
+                        count++;
+                }
+                break;
+            default:
+                System.out.println("Enter valid option");
+                break;
+        }
+        System.out.println("Number of rooms available : "+count);
+    }
+
+    static void bill(int rn,int rtype)
+    {
+        double amount=0;
+        String list[]={"Sandwich","Pasta","Noodles","Coke"};
+        System.out.println("\n*******");
+        System.out.println(" Bill:-");
+        System.out.println("*******");
+
+        switch(rtype)
+        {
+            case 1:
+                amount+=4000;
+                System.out.println("\nRoom Charge - "+4000);
+                System.out.println("\n===============");
+                System.out.println("Food Charges:- ");
+                System.out.println("===============");
+                System.out.println("Item   Quantity    Price");
+                System.out.println("-------------------------");
+                for(Meals meals:roomStandard.luxury_doubleroom[rn].meals)
+                {
+                    amount+=meals.price;
+                    String format = "%-10s%-10s%-10s%n";
+                    System.out.printf(format,list[meals.itemNo-1],meals.quantity,meals.price );
+                }
+
+                break;
+            case 2:amount+=3000;
+                System.out.println("Room Charge - "+3000);
+                System.out.println("\nFood Charges:- ");
+                System.out.println("===============");
+                System.out.println("Item   Quantity    Price");
+                System.out.println("-------------------------");
+                for(Meals meals:roomStandard.deluxe_doubleroom[rn].meals)
+                {
+                    amount+=meals.price;
+                    String format = "%-10s%-10s%-10s%n";
+                    System.out.printf(format,list[meals.itemNo-1],meals.quantity,meals.price );
+                }
+                break;
+            case 3:amount+=2200;
+                System.out.println("Room Charge - "+2200);
+                System.out.println("\nFood Charges:- ");
+                System.out.println("===============");
+                System.out.println("Item   Quantity    Price");
+                System.out.println("-------------------------");
+                for(Meals meals:roomStandard.luxury_singleroom[rn].meals)
+                {
+                    amount+=meals.price;
+                    String format = "%-10s%-10s%-10s%n";
+                    System.out.printf(format,list[meals.itemNo-1],meals.quantity,meals.price );
+                }
+                break;
+            case 4:amount+=1200;
+                System.out.println("Room Charge - "+1200);
+                System.out.println("\nFood Charges:- ");
+                System.out.println("===============");
+                System.out.println("Item   Quantity    Price");
+                System.out.println("-------------------------");
+                for(Meals meals:roomStandard.deluxe_singleroom[rn].meals)
+                {
+                    amount+=meals.price;
+                    String format = "%-10s%-10s%-10s%n";
+                    System.out.printf(format,list[meals.itemNo-1],meals.quantity,meals.price );
+                }
+                break;
+            default:
+                System.out.println("Not valid");
+        }
+        System.out.println("\nTotal Amount- "+amount);
+    }
+
 
 }
